@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "363503513184",
+    "project_id": "revient-4a9ec",
+    "storage_bucket": "revient-4a9ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363503513184:android:65c68ff47da56cb1949d05",
+        "android_client_info": {
+          "package_name": "com.gayo.revient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363503513184-nke6c6jo6q83ome7sth3gugnv53d9c7e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWpBMYFtgXXI2H41j9mGOTrcsyH38PuwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363503513184-nke6c6jo6q83ome7sth3gugnv53d9c7e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
