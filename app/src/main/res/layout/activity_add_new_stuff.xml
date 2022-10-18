@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="24dp"
+    android:orientation="vertical"
+    tools:context=".AddNewStuffActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_addNewStuff_shareTo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_addNewStuff_label_shareTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prêter à :" />
+
+        <AutoCompleteTextView
+            android:id="@+id/actv_addNewStuff_label_shareTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="mon.ami@copain.com" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_addNewStuff_shareDuration"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_addNewStuff_label_shareDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="4dp"
+                android:text="Durée du prêt :" />
+
+            <TextView
+                android:id="@+id/tv_addNewStuff_duration_shareDuration"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/sb_addNewStuff_label_shareDuration"
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_addNewStuff_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_addNewStuff_label_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nom" />
+
+        <EditText
+            android:id="@+id/et_addNewStuff_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Mon super outil"
+            android:inputType="textPersonName" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_addNewStuff_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_addNewStuff_label_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Type" />
+
+        <Spinner
+            android:id="@+id/sp_addNewStuff_stuffType"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_addNewStuff_valid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Valider" />
+
+</LinearLayout>

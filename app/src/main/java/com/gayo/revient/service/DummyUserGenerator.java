@@ -38,4 +38,6 @@ public class DummyUserGenerator {
         return dummyFriends;
     };
 
+    public static List<User> getUsers(){return mUsers;};
+
 }

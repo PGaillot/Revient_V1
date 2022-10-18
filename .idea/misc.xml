@@ -3,12 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Code/Revient/app/src/main/res/drawable-v24/icon_app_background.xml" value="0.5" />
         <entry key="..\:/Code/Revient/app/src/main/res/drawable/ic_baseline_checkroom_24.xml" value="0.3465" />
+        <entry key="..\:/Code/Revient/app/src/main/res/drawable/ic_launcher_background.xml" value="0.311" />
         <entry key="..\:/Code/Revient/app/src/main/res/drawable/item.xml" value="0.195" />
+        <entry key="..\:/Code/Revient/app/src/main/res/layout/activity_add_new_stuff.xml" value="0.2875905797101449" />
         <entry key="..\:/Code/Revient/app/src/main/res/layout/activity_main.xml" value="0.29393115942028986" />
+        <entry key="..\:/Code/Revient/app/src/main/res/layout/fragment_detail.xml" value="0.13405797101449277" />
         <entry key="..\:/Code/Revient/app/src/main/res/layout/fragment_stuff_list.xml" value="0.328804347826087" />
+        <entry key="..\:/Code/Revient/app/src/main/res/layout/icon_app_background.xml" value="0.17831813576494426" />
+        <entry key="..\:/Code/Revient/app/src/main/res/layout/icon_app_logo.xml" value="0.35260416666666666" />
+        <entry key="..\:/Code/Revient/app/src/main/res/layout/layout.xml" value="0.17147922998986828" />
         <entry key="..\:/Code/Revient/app/src/main/res/layout/struff_itemlist_circle.xml" value="0.29393115942028986" />
-        <entry key="..\:/Code/Revient/app/src/main/res/layout/stuff_simple_row.xml" value="0.6728452270620945" />
+        <entry key="..\:/Code/Revient/app/src/main/res/layout/stuff_simple_row.xml" value="0.33" />
+        <entry key="..\:/Code/Revient/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.278" />
+        <entry key="..\:/Code/Revient/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.278" />
+        <entry key="..\:/Code/Revient/app/src/main/res/mipmap-anydpi-v26/ic_launcher_rv.xml" value="0.278" />
       </map>
     </option>
   </component>

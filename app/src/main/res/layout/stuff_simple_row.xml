@@ -15,7 +15,7 @@
         android:paddingBottom="16dp">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/iv_simpleStufffRow_category"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center_vertical"
@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="StuffName"
-                android:textColor="@color/rv_txt_dark" />
+                android:textColor="?android:attr/textColorPrimary" />
 
             <TextView
                 android:id="@+id/tv_simpleStufffRow_category"
@@ -50,5 +50,5 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
+        android:background="@color/rv_primary_light" />
 </LinearLayout>
