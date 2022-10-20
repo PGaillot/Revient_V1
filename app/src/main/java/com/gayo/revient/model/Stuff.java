@@ -1,8 +1,9 @@
 package com.gayo.revient.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Stuff {
+public class Stuff implements Serializable {
 
 
     String name;

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.gayo.revient.di.DI;
+import com.gayo.revient.fragment.DetailFragment;
 import com.gayo.revient.fragment.StuffListFragment;
 import com.gayo.revient.model.Stuff;
 import com.gayo.revient.model.StuffType;
@@ -33,22 +34,21 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+
+
+public class MainActivity extends AppCompatActivity implements StuffListFragment.OnButtonClickedListener, Serializable {
 
     // Api
     StuffApiService mStuffApiService = DI.getStuffApiService();
 
     FloatingActionButton mAddButton;
     StuffListFragment mStuffListFragment;
-    List<Stuff> mStuffList;
-    List<User> mUserList;
-    List<StuffType> mStuffTypes;
-    RecyclerView mStuffListRecyclerView;
-    SimpleStuffListAdapter mSSLAdapter;
 
     //Firebase Variables
     FirebaseFirestore mFirestore;
@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        Date now = new Date();
+//        mStuff = new Stuff("name", "owner", "borrower","0", now, now,50);
 
         mAddButton = findViewById(R.id.fab_MainAct);
         mAddButton.setOnClickListener(new View.OnClickListener() {
@@ -83,4 +85,13 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fl_MainAct, mStuffListFragment).commit();
     }
 
+    @Override
+    public void onButtonClicked(View view, Stuff stuff) {
+        DetailFragment detailFragment = new DetailFragment();
+        Bundle stuffBundle = new Bundle();
+        stuffBundle.putSerializable("currentStuff", stuff);
+        detailFragment.setArguments(stuffBundle);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fl_MainAct, detailFragment).addToBackStack(null).commit();
+    }
 }

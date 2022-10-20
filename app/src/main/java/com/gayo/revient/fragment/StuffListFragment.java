@@ -4,6 +4,7 @@ import static android.graphics.Color.CYAN;
 import static android.graphics.Color.RED;
 import static android.graphics.Color.TRANSPARENT;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -47,7 +48,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StuffListFragment extends Fragment {
+public class StuffListFragment extends Fragment implements View.OnClickListener {
 
     private FirestoreRecyclerAdapter fstRecyclerAdapter;
     View mStuffListFragmentView;
@@ -55,8 +56,47 @@ public class StuffListFragment extends Fragment {
     RecyclerView mRecyclerView;
     String drawableUri;
     ImageButton ib_cat1,ib_cat2,ib_cat3,ib_cat4,ib_cat5;
+    Stuff mStuff;
     int mButtonTypeSelected; // 0 = nothing selected;
+    private OnButtonClickedListener mCallback;
 
+    @Override
+    public void onClick(View view) {
+
+    }
+
+
+    //-----------------------------------------------
+    //----------------- callBack --------------------
+    //-----------------------------------------------
+    public interface OnButtonClickedListener{
+        public void onButtonClicked(View view, Stuff stuff);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.createCallbackToParentActivity();
+    }
+
+//    @Override
+//    public void onClick(View view) {
+//        mCallback.onButtonClicked(view);
+//    }
+
+    private void createCallbackToParentActivity(){
+        try {
+            mCallback = (OnButtonClickedListener) getActivity();
+        } catch (ClassCastException e){
+            throw new ClassCastException(e.toString() + "must implement OnButtonClickListener");
+        }
+    }
+
+
+
+    //-----------------------------------------------
+    //----------------- Constructor -------------------
+    //-----------------------------------------------
     public StuffListFragment() {
     }
 
@@ -65,6 +105,10 @@ public class StuffListFragment extends Fragment {
         return fragment;
     }
 
+
+    //-----------------------------------------------
+    //----------------- On Create -------------------
+    //-----------------------------------------------
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +116,13 @@ public class StuffListFragment extends Fragment {
         mButtonTypeSelected = 0;
 
     }
+
+
+
+
+    //-----------------------------------------------
+    //--------------- RecyclerView ------------------
+    //-----------------------------------------------
     private class FbViewHolder extends RecyclerView.ViewHolder {
         TextView tv_Stuff_Name, tv_Stuff_Category;
         ImageView iv_Stuff_category;
@@ -84,6 +135,10 @@ public class StuffListFragment extends Fragment {
         }
     }
 
+
+    //-----------------------------------------------
+    //--------------- onCreateView ------------------
+    //-----------------------------------------------
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -234,7 +289,6 @@ public class StuffListFragment extends Fragment {
 
 
     private void InitializeStuffList(int typeSelected) {
-
         Query query = null;
 
         if(typeSelected == 0){
@@ -264,18 +318,16 @@ public class StuffListFragment extends Fragment {
                 holder.tv_Stuff_Category.setText(cStuffType.getName());
                 int iconResource = getResources().getIdentifier(cStuffType.getIcon(), "drawable" ,getContext().getPackageName());
                 holder.iv_Stuff_category.setImageResource(iconResource);
-
+                mStuff = new Stuff(model.getName(), model.getOwner(), model.getBorrower(), model.getCreationDate(), model.getCurrentLoanDate(), model.getInitialLoanPeriodInDay());
                 // --- Click at Item
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        // TODO get the user click, to send it to MainActivity and open replace StuffListFragment by DetailFragment.
+                        mCallback.onButtonClicked(view, model);
                     }
                 });
             }
         };
-
-
 
         mRecyclerView = mStuffListFragmentView.findViewById(R.id.rv_StuffList);
         mRecyclerView.setHasFixedSize(true);
@@ -296,6 +348,12 @@ public class StuffListFragment extends Fragment {
         fstRecyclerAdapter.stopListening();
     }
 
+
+    /**
+     * Return a StuffType with a StuffType id
+     * @param id String
+     * @return StuffType
+     */
     public StuffType getStuffTypeById(String id){
         List<StuffType> stuffTypeList = StuffTypeGenerator.GenerateStuffTypes();
         StuffType cStuffType = null;
@@ -303,8 +361,6 @@ public class StuffListFragment extends Fragment {
                 stuffTypeList) {
             if (st.getuId().equals(id)) {
                 cStuffType = st;
-            } else  {
-                System.out.println("ERROR : StuffType is not in the list => " + st.getuId() + " != " + id);
             }
         }
         return cStuffType;
