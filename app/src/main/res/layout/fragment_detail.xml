@@ -138,7 +138,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingEnd="4dp"
-                        android:text="le :" />
+                        android:text="prêté le :" />
 
                     <TextView
                         android:id="@+id/tv_detailFrag_initialLoanDate"

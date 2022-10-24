@@ -72,6 +72,7 @@ public class AddNewStuffActivity extends AppCompatActivity implements AdapterVie
         Intent intent = new Intent(this, MainActivity.class);
         typeId = null;
         mDurationTV.setText("aucune");
+        mInitialLoanPeriodInDay = 0;
 
 
         //-------------------------------------------------
@@ -104,8 +105,6 @@ public class AddNewStuffActivity extends AppCompatActivity implements AdapterVie
                     mDurationSeekBar.setEnabled(false);
                     mInitialLoanPeriodInDay = 0;
                     mDurationTV.setText("aucune");
-
-
                 }
             }
         });
@@ -201,7 +200,11 @@ public class AddNewStuffActivity extends AppCompatActivity implements AdapterVie
                 //-------------------
                 // -- Get Borrower
                 //-------------------
-                mBorrower = String.valueOf(mBorrowerACTV.getText());
+                if (mBorrowerACTV.getText().toString().isEmpty()) {
+                    mBorrower = null;
+                } else {
+                    mBorrower = String.valueOf(mBorrowerACTV.getText());
+                }
 
                 //-------------------
                 // -- Get User
@@ -212,7 +215,14 @@ public class AddNewStuffActivity extends AppCompatActivity implements AdapterVie
                 //-------------------
                 // -- Create New Stuff
                 //-------------------
-                Stuff mNewStuff = new Stuff(mName, mOwner, mBorrower, mTypeId, mCreationDate, mCurrentLoanDate, mInitialLoanPeriodInDay);
+                System.out.println(mBorrower);
+                Stuff mNewStuff = null;
+                if (mBorrower == null) {
+                    mNewStuff = new Stuff(mName, mOwner, mTypeId, mCreationDate);
+                } else {
+                    mNewStuff = new Stuff(mName, mOwner, mBorrower, mTypeId, mCreationDate, mCurrentLoanDate, mInitialLoanPeriodInDay);
+                }
+
                 db.collection("stuffs")
                         .add(mNewStuff)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

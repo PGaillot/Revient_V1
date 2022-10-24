@@ -1,42 +1,53 @@
 package com.gayo.revient.model;
 
+import com.google.firebase.firestore.Exclude;
+
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Stuff implements Serializable {
-
-
     String name;
     String owner;
     String borrower;
     String type;
+    String desc;
     Date creationDate;
     Date currentLoanDate;
     int initialLoanPeriodInDay;
+    Date now = new Date();
 
+    public Stuff() {
+    }
 
-
-
-    public Stuff(String name,  String owner, String borrower, String type, Date creationDate, Date currentLoanDate, int initialLoanPeriodInDay) {
-        this.name = name;
-        this.owner = owner;
-        this.borrower = borrower;
-        this.type = type;
-        this.creationDate =creationDate;
-        this.currentLoanDate=currentLoanDate;
-        this.initialLoanPeriodInDay = initialLoanPeriodInDay;
-    };
-
-    public Stuff(String name, String owner, String type,  Date creationDate, Date currentLoanDate, int initialLoanPeriodInDay) {
+    public Stuff(String name, String owner, String type, Date creationDate) {
         this.name = name;
         this.owner = owner;
         this.type = type;
         this.creationDate = creationDate;
+    }
 
-    };
+    public Stuff(String name, String owner, String type, Date creationDate, Date currentLoanDate, int initialLoanPeriodInDay) {
+        this.name = name;
+        this.owner = owner;
+        this.type = type;
+        this.creationDate = creationDate;
+        this.currentLoanDate = currentLoanDate;
+        this.initialLoanPeriodInDay = initialLoanPeriodInDay;
 
-    public Stuff(){
-    };
+    }
+
+    public Stuff(String name, String owner, String borrower, String type, Date creationDate, Date currentLoanDate, int initialLoanPeriodInDay) {
+        this.name = name;
+        this.owner = owner;
+        this.borrower = borrower;
+        this.type = type;
+        this.creationDate = creationDate;
+        this.currentLoanDate = currentLoanDate;
+        this.initialLoanPeriodInDay = initialLoanPeriodInDay;
+    }
+
 
     public String getName() {
         return name;
@@ -89,4 +100,13 @@ public class Stuff implements Serializable {
     public void setInitialLoanPeriodInDay(int initialLoanPeriodInDay) {
         this.initialLoanPeriodInDay = initialLoanPeriodInDay;
     }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
 }

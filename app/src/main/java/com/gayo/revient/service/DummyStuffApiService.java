@@ -12,16 +12,18 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class DummyStuffApiService implements StuffApiService {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    List<Stuff> stuffList = new ArrayList<>();
 
     @Override
     public List<Stuff> getStuffs() {
-        List<Stuff> stuffList = new ArrayList<>();
         db.collection("stuffs")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -49,4 +51,45 @@ public class DummyStuffApiService implements StuffApiService {
 
         return stuffList;
     }
+
+    public void updateStuff(Stuff stuff){
+        db.collection("stuffs").document();
+    };
+
+
+    public Date getReturnDate(Stuff stuff) {
+        if (stuff.getBorrower() != null){
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(stuff.getCurrentLoanDate());
+            calendar.add(Calendar.DATE, stuff.getInitialLoanPeriodInDay());
+            System.out.println(calendar.getTime());
+            return calendar.getTime();
+        } else {
+            return null;
+        }
+    }
+
+    public long getReturnLoanCountInDays(Stuff stuff) {
+        long daysReturnCount = 0;
+        Date now = new Date();
+        if (stuff.getBorrower() != null) {
+            long start = now.getTime();
+            long end = getReturnDate(stuff).getTime();
+            daysReturnCount = TimeUnit.MILLISECONDS.toDays(Math.abs(end - start));
+        } else {
+            System.out.println("Error this object is not lent");
+        }
+        return daysReturnCount;
+    }
+
+    public int getPercentLoan(Stuff stuff){
+        if (stuff.getBorrower() != null) {
+            int returnLoanDate = stuff.getInitialLoanPeriodInDay();
+            int nowDate = (int) getReturnLoanCountInDays(stuff);
+            return (nowDate * 100 / returnLoanDate);
+        } else {
+            return 0;
+        }
+    }
+
 }
